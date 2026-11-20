@@ -17,17 +17,32 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
       - name: Install dependencies
         run: npm install
 
+      # مرحله اصلاح شده: ساخت پوشه اندروید در صورت نبود
       - name: Prepare Android
-        run: node build/android-prepare.mjs
+        run: |
+          if [ ! -d "android" ]; then
+            npx cap add android
+          fi
+          node build/android-prepare.mjs
 
+      # مرحله اصلاح شده: ساخت APK با Gradle
       - name: Build APK
-        run: npm run build:android 
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: heyat-android-apk
-          path: android/app/build/outputs/apk/**/*.apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
