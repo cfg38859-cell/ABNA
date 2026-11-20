@@ -5,6 +5,9 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build-android:
     runs-on: ubuntu-latest
@@ -15,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4
@@ -26,23 +29,28 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # مرحله اصلاح شده: ساخت پوشه اندروید در صورت نبود
+      # ساخت نسخه وب (پوشه dist) - لازم است قبل از Capacitor
+      - name: Build web
+        run: npm run build
+
+      # ساخت پوشه اندروید و همگام‌سازی با وب
       - name: Prepare Android
         run: |
           if [ ! -d "android" ]; then
             npx cap add android
           fi
           node build/android-prepare.mjs
+          npx cap sync android
 
-      # مرحله اصلاح شده: ساخت APK با Gradle
       - name: Build APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: heyat-android-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
