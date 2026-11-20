@@ -40,6 +40,9 @@ jobs:
             npx cap add android
           fi
           node build/android-prepare.mjs
+          echo "--- فایل‌های آیکون ---"
+          ls -la assets
+          npx capacitor-assets generate --android
           npx cap sync android
 
       - name: Build APK
