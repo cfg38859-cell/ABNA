@@ -1,0 +1,9 @@
+
+#stn .tm{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:8px 0;padding:8px;border-radius:12px;background:var(--bg)}
+#stn .tm input{width:auto;flex:1;min-width:92px;margin:0}
+#stn .tm small{color:var(--mute)}
+#stn .rs{max-height:230px;overflow:auto;margin-top:8px}
+#stn .fl{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+#stn table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px}
+#stn td,#stn th{padding:5px 6px;border-bottom:1px solid var(--mute);text-align:right}
+#stn .stc{cursor:pointer}

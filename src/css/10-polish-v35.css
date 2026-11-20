@@ -1,0 +1,90 @@
+
+/* ===== v35 design pass: UX / visual / Persian typography / accessibility / mobile panel ===== */
+:root{--r-lg:20px;--r-md:14px;--r-sm:10px;--tap:44px;--ring:color-mix(in srgb,var(--gold) 70%,var(--p))}
+body{line-height:1.85;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-kerning:normal}
+h1,h2,h3{text-wrap:balance;line-height:1.6}
+p,.hint,.pre{text-wrap:pretty}
+.hint{line-height:1.8}
+
+/* focus + motion (accessibility) */
+:where(button,input,select,textarea,a,[tabindex]):focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:var(--r-sm)}
+.in:focus,#abody textarea:focus,#abody select:focus{outline:0;border-color:var(--p);box-shadow:0 0 0 3px color-mix(in srgb,var(--p) 25%,transparent)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.app{opacity:1!important}#splash .logo{opacity:1;transform:none}}
+
+/* home header: calm hierarchy, one tidy action row */
+header.top{padding:22px 18px 6px;position:relative}
+header.top::after{content:"";display:block;width:64px;height:3px;border-radius:3px;margin:14px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent);width:120px}
+header.top h2{font-size:1.15rem;font-weight:800;margin-top:2px}
+header.top #hu{display:block;margin-top:4px;font-size:.88rem;color:var(--mute)}
+.hbtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px}
+.hbtns .ib{margin:0!important;min-height:38px;padding:8px 16px;font-size:.84rem;border:1px solid color-mix(in srgb,var(--p) 28%,transparent);background:color-mix(in srgb,var(--card) 70%,transparent)}
+.hbtns #out{color:#b6402c}
+[data-theme=dark] .hbtns #out,:root:not([data-theme=light]) .hbtns #out{color:#ff9d8a}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]) .hbtns #out{color:#b6402c}}
+#bkn:empty{display:none}
+
+/* quick backup: demoted to a clear secondary action */
+#qbkb{width:min(92%,420px);display:block;margin:0 auto;min-height:var(--tap);background:transparent!important;color:var(--p)!important;border:1.5px dashed var(--p)!important;font-size:.9rem!important;font-weight:700}
+#qbkb:active{background:color-mix(in srgb,var(--p) 12%,transparent)!important}
+
+/* home tiles: double-ring "rosette" frame, steadier labels */
+.circle{box-shadow:0 8px 20px var(--shadow),inset 0 0 0 4px var(--card),inset 0 0 0 5.5px color-mix(in srgb,var(--gold) 38%,transparent)}
+.app b{line-height:1.6;letter-spacing:0}
+.app:focus-visible .circle{outline:3px solid var(--ring);outline-offset:3px}
+.bdg{top:-2px;right:-2px;border:2px solid var(--bg);font-weight:700}
+
+/* screens: bigger, easier back button and title bar */
+.bar{padding:14px 16px 6px;gap:12px}
+.bar h2{font-size:1.15rem;font-weight:800}
+.back{width:var(--tap);height:var(--tap);flex:none;display:grid;place-items:center;line-height:1}
+
+/* tabs: scrollable, fade-free, snap, comfortable targets */
+.tabs{scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{scroll-snap-align:center;min-height:var(--tap);font-weight:500}
+.tabs button.on,.seg button.on,.sub button.on{box-shadow:0 3px 10px color-mix(in srgb,var(--p) 35%,transparent)}
+.seg button,.sub button{min-height:40px}
+
+/* cards + rows: lighter shadow, clear hierarchy */
+.card{border-radius:var(--r-lg);box-shadow:0 2px 4px color-mix(in srgb,var(--shadow) 50%,transparent),0 8px 20px -6px var(--shadow)}
+.card h3{font-size:1.02rem;font-weight:800;padding-inline-start:10px;border-inline-start:4px solid var(--gold);line-height:1.5}
+.row{border-radius:var(--r-md);box-shadow:0 1px 3px color-mix(in srgb,var(--shadow) 45%,transparent)}
+.row b{font-weight:700}
+.kv{padding:8px 0}
+.big{letter-spacing:0}
+.pos{color:#1f7a45}.neg{color:#b6402c}
+[data-theme=dark] .pos{color:#6fd49a}[data-theme=dark] .neg{color:#ff9d8a}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .pos{color:#6fd49a}:root:not([data-theme=light]) .neg{color:#ff9d8a}}
+.g2 .card{padding:14px 12px}
+.g2 .card h3{border:0;padding:0;font-size:.9rem;color:var(--mute);font-weight:600}
+
+/* forms + buttons: 44px targets, calmer inputs */
+.in,#abody textarea,#abody select{min-height:var(--tap);border-radius:var(--r-md)}
+#abody textarea,textarea.in{min-height:92px;line-height:1.8}
+.pri,.sec{min-height:var(--tap);border-radius:var(--r-md);font-size:.98rem}
+.pri:active,.sec:active{transform:scale(.985)}
+.ib,.acts button,.dp button{min-height:36px}
+.st{min-height:38px;min-width:42px}
+.acts button{padding:7px 12px}
+label{line-height:1.6}
+.warn{border-inline-start:4px solid #c4533f;border-radius:var(--r-sm)}
+.chip{padding:3px 10px;font-weight:600}
+
+/* bottom sheets: grab handle + gentle entrance */
+#sheet .sh,#dsh .sh,#ish .sh,#bk .sh,#thp .sh{border-radius:26px 26px 0 0;box-shadow:0 -10px 30px #0004;position:relative;padding-top:26px}
+#sheet .sh::before,#dsh .sh::before,#ish .sh::before,#bk .sh::before,#thp .sh::before{content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);width:42px;height:5px;border-radius:5px;background:color-mix(in srgb,var(--mute) 45%,transparent)}
+#sheet.on .sh,#dsh.on .sh,#ish.on .sh,#bk.on .sh,#thp.on .sh{animation:sheetUp .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes sheetUp{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+
+/* toasts: readable on both themes */
+#toast,#ftoast{max-width:88vw;text-align:center;box-shadow:0 8px 24px #0005}
+#gtoast{box-shadow:0 10px 28px #0005;font-weight:600}
+
+/* login card */
+#lgs .card{padding:22px 20px;border-radius:24px}
+#lgs h3{font-size:1.2rem;border:0;padding:0;margin-bottom:14px}
+
+/* small phones */
+@media (max-width:360px){.grid{gap:14px 2px!important;padding:12px 6px!important}.circle{width:76px!important;height:76px!important}.circle svg{width:36px!important;height:36px!important}.app b{font-size:.72rem!important}}
+/* wide screens: keep reading width comfortable */
+@media (min-width:700px){#abody,#fbody,#sbody,#dbody,#ibody,.bd{max-width:620px}.tabs{max-width:620px}}

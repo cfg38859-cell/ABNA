@@ -1,0 +1,10 @@
+
+/* custom colours */
+.sec{color:var(--onsec,#1b2b29)}
+html[data-tone=d]{color-scheme:dark}html[data-tone=l]{color-scheme:light}
+html[data-tone=d] .pos{color:#6fd49a}html[data-tone=d] .neg,html[data-tone=d] .hbtns #out{color:#ff9d8a}
+html[data-tone=l] .pos{color:#1f7a45}html[data-tone=l] .neg,html[data-tone=l] .hbtns #out{color:#b6402c}
+.cuw{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.cuw>div{display:flex;flex-direction:column;gap:6px;font-size:.84rem;color:var(--mute)}
+.cuw input[type=color]{width:100%;height:54px;padding:3px;border:2px solid color-mix(in srgb,var(--p) 35%,transparent);border-radius:14px;background:var(--card);cursor:pointer}
+#cuc .seg{margin-top:0}

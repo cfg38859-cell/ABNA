@@ -1,0 +1,54 @@
+
+/* ===== second pass: details ===== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light;accent-color:var(--p)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark}}
+:root[data-theme="dark"]{color-scheme:dark}
+:root{--mute:#4d6663}
+
+/* iOS zooms the page when a field is under 16px: keep every field at 16px */
+.in,input,select,textarea,#abody select,#abody textarea,.sh input,.sh select,.sh textarea{font-size:16px}
+input[type=checkbox],input[type=radio]{width:22px;height:22px;flex:none}
+input[type=date],input[type=time],input[type=number],input[type=tel]{direction:ltr;text-align:right}
+.in.amt{direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+
+/* touch: no double-tap zoom delay, no accidental text selection on controls */
+button,.app,.st,.ib,.tabs button,.back,.cb{touch-action:manipulation;-webkit-user-select:none;user-select:none}
+.tabs,#abody,#fbody,#sbody,#dbody,#ibody,.bd,.sh,#home{overscroll-behavior:contain}
+
+/* status: never colour alone, and enough contrast for white text */
+.st.on{font-weight:700;box-shadow:0 2px 8px color-mix(in srgb,var(--ink) 25%,transparent)}
+.st.on::before{content:"\2713\00a0"}
+.st.p.on,.chip.p{background:#22764a;color:#fff}
+.st.a.on,.chip.a{background:#b3432f;color:#fff}
+.st.l.on,.chip.l{background:#f0b13a;color:#2b1d00}
+.stb{flex:none}
+
+/* rows: tidy action columns, phone numbers read left-to-right */
+.row>div:first-child{min-width:0;overflow-wrap:anywhere}
+.acts{flex:none}
+.acts button,.acts .cb{min-width:78px;text-align:center}
+.row a{unicode-bidi:plaintext;font-variant-numeric:tabular-nums}
+.row .acts a.cb{min-height:36px;display:grid;place-items:center}
+.kv b{text-align:end}
+.dp button,.dp select{min-height:42px}
+.dp button{padding:6px 14px;font-weight:600}
+
+/* report text boxes and quick-backup dialog (inline styles need !important) */
+textarea[readonly]{min-height:240px;line-height:1.9;border-color:color-mix(in srgb,var(--p) 30%,transparent)!important;border-radius:var(--r-md)!important;padding:12px!important;font-size:15px}
+#qbkp>div{border-radius:22px!important;padding:22px 18px!important;box-shadow:0 20px 50px #0006}
+#qbkp h3{font-size:1.1rem}
+#qbkpw{min-height:var(--tap);font-size:16px!important;background:var(--bg)!important;color:var(--ink)!important;border:1.5px solid color-mix(in srgb,var(--p) 35%,transparent)!important;border-radius:12px!important;padding:10px 12px!important;direction:ltr;text-align:center}
+#qbkok,#qbkno{min-height:var(--tap);border-radius:12px!important;font:inherit;font-weight:700}
+
+/* login: stays reachable when the keyboard opens */
+#lgs{justify-content:flex-start;overflow-y:auto}
+#lgs .card{margin-block:auto}
+
+/* home labels: a little larger and easier to read */
+.app b{font-size:.8rem!important;max-width:104px!important}
+@media (max-width:360px){.app b{font-size:.74rem!important}}
+html[data-ui=list] .app b{font-size:.95rem!important;max-width:none!important}
+html[data-ui=tile] .app b{font-size:.88rem!important;max-width:none!important}
+
+/* empty states read as a gentle prompt, not a stray line */
+p.hint:only-child{text-align:center;padding:26px 12px;border:1.5px dashed color-mix(in srgb,var(--mute) 40%,transparent);border-radius:var(--r-md)}
