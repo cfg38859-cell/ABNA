@@ -1,0 +1,1 @@
+var APP_VER=41;try{var _s=localStorage.getItem("app_html"),_v=+localStorage.getItem("app_ver")||0;if(_s&&_v>APP_VER){document.open();document.write(_s);document.close()}}catch(e){}

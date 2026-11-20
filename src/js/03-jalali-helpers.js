@@ -1,0 +1,1 @@
+window.jleap=function(y){return [1,5,9,13,17,22,26,30].indexOf(((+y%33)+33)%33)>-1};window.jml=function(y,m){m=+m;return m<=6?31:m<=11?30:(window.jleap(y)?30:29)};try{document.documentElement.setAttribute('data-ui',localStorage.getItem('ui_k')||'circle')}catch(e){}
