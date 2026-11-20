@@ -1,0 +1,12 @@
+{
+  "appId": "com.heyat.abnaalhasan",
+  "appName": "هیئت ابناءالحسن",
+  "webDir": "dist/android-www",
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#f4efe6"
+  },
+  "plugins": {
+    "SplashScreen": { "launchShowDuration": 0 }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "heyat-app",
+  "version": "41.0.0",
+  "private": true,
+  "description": "برنامهٔ مدیریت هیئت معظم ابناءالحسن (علیهم السلام) — تک‌فایل HTML آفلاین، نسخهٔ وب نصب‌شدنی (PWA) و اپ اندروید",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node build/build.mjs",
+    "test": "node build/verify.mjs",
+    "check:v41": "node build/verify.mjs --against legacy/heyat-offline-v41.original.html",
+    "dev": "node build/dev.mjs",
+    "android:prepare": "node build/android-prepare.mjs",
+    "android:apk": "npm run build && npx cap add android && npm run android:prepare && npx cap sync android && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/app": "^6.0.2",
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/filesystem": "^6.0.2",
+    "@capacitor/share": "^6.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.2.0"
+  }
+}
